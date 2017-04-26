@@ -8,6 +8,7 @@ export default class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.handleUsername = this.handleUsername.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       loggedIn: false,
       username: ""
@@ -23,10 +24,10 @@ export default class TodoApp extends React.Component {
         })
   }
 
-  handleChange (key) {
+  handleChange () {
     return function (e) {
       var state = {};
-      state[key] = e.target.value.toLowerCase();
+      state.username = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
       this.setState(state);
     }.bind(this);
   }
@@ -40,11 +41,12 @@ export default class TodoApp extends React.Component {
           { !this.state.username ? <h1>Hi there! What's your name?</ h1> : null}
           { this.state.username ? <h1>Hi, {this.state.username}!</ h1> : null}
           <form>
-            <input 
+            <input
+              onSubmit={this.handleUsername}
               onChange={this.handleChange('username')} 
               value={this.state.username} 
             />
-            <input type="button" value="Go!" onClick={this.handleUsername} />
+            <input type="submit" value="Go!" onClick={this.handleUsername} />
           </form>
         </div> : null}
 

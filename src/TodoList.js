@@ -49,7 +49,7 @@ export default class TodoList extends React.Component {
 
     return (
         <div>
-          <h3>To Do Today <span style={{color:"grey"}} >{this.props.username}</span></h3>
+          <h3>My To Do List Today <span style={{color:"grey"}} >{this.props.username}</span></h3>
             <br />
             <div>
                 {this.state.items.map((item, index) =>
@@ -75,9 +75,7 @@ export default class TodoList extends React.Component {
               />
               <input type="submit" value="+" onClick={this.handleSubmit} />
             </form>
-          </div> 
-
-
+        </div> 
     );
   }
   // <p> {this.state.name} - {this.state.address}</p>
