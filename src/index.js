@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SolarFormsApp from './SolarFormsApp';
+import TodoApp from './TodoApp.js';
 import './index.css';
 
 
 ReactDOM.render(
-  <SolarFormsApp />,
+	<TodoApp />,
   document.getElementById('root')
 );

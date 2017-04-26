@@ -1,10 +1,9 @@
 import React from 'react';
-// import FormRender from './FormRender.js'
+// import TodoObject from './TodoObject.js'
 import firebase from 'firebase';
 
 var config = {
   // apiKey: "some-api-key",
-  username: "george",
   authDomain: "solarforms-b9faa.firebaseio.com/",
   databaseURL: "https://solarforms-b9faa.firebaseio.com/",
   // storageBucket: "some-app.appspot.com",
@@ -14,24 +13,26 @@ firebase.initializeApp(config);
 
 
 
-export default class SolarFormsApp extends React.Component {
+export default class TodoList extends React.Component {
 
   constructor(props) {
     super(props);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsername = this.handleUsername.bind(this);
     this.state = {
       name: '', 
       address: '',
       uid: '',
       items: [],
+      username: this.props.username,
     };
   }
 
   componentWillMount() {
     this.items = [{}];
-    this.ref = firebase.database().ref(config.username);
+    this.ref = firebase.database().ref(this.state.username);
     this.ref.on("child_added", function(dataSnapshot) {
       this.items.push( dataSnapshot.val()); 
       this.setState({ 
@@ -40,8 +41,6 @@ export default class SolarFormsApp extends React.Component {
     }.bind(this));
   }
 
-
-
   componentWillUnmount() {
     this.ref.off();
   };
@@ -49,42 +48,35 @@ export default class SolarFormsApp extends React.Component {
   render() {
 
     return (
-
-
-      <div>
-        <h3>To Do Today</h3>
-        <br />
         <div>
-            {this.state.items.map((item, index) =>
-                  <p key={index}> 
-                    <b>{item.name}</b> &nbsp;
-                    <span style={{color: 'grey'}} >{item.address}</span> &nbsp;
-                    <button onClick={this.handleRemove(index)}>
-                      -
-                    </button>
-                  </p> 
-            )}
-            
-        </div>
-        <form>
-          <input 
-            placeholder="Item"
-            onChange={this.handleChange('name')} 
-            value={this.state.name} 
-          />
-          <input 
-            placeholder="Comment"
-            onChange={this.handleChange('address')} 
-            value={this.state.address}
-          />
-          <input type="submit" value="+" onClick={this.handleSubmit} />
-        </form>
+          <h3>To Do Today <span style={{color:"grey"}} >{this.props.username}</span></h3>
+            <br />
+            <div>
+                {this.state.items.map((item, index) =>
+                      <p key={index}> 
+                        <b>{item.name}</b> &nbsp;
+                        <span style={{color: 'grey'}} >{item.address}</span> &nbsp;
+                        <button onClick={this.handleRemove(index)}>
+                          -
+                        </button>
+                      </p> 
+                )}
+            </div>
+            <form>
+              <input 
+                placeholder="Item"
+                onChange={this.handleChange('name')} 
+                value={this.state.name} 
+              />
+              <input 
+                placeholder="Comment"
+                onChange={this.handleChange('address')} 
+                value={this.state.address}
+              />
+              <input type="submit" value="+" onClick={this.handleSubmit} />
+            </form>
+          </div> 
 
-
-        
-        
-        
-      </div>
 
     );
   }
@@ -105,7 +97,7 @@ export default class SolarFormsApp extends React.Component {
   handleRemove (key) {
     return function () {
       this.items = [{}];
-      this.ref = firebase.database().ref(config.username);
+      this.ref = firebase.database().ref(this.state.username);
 
       var newData = this.state.items.slice();
       newData.splice(key, 1);
@@ -125,6 +117,15 @@ export default class SolarFormsApp extends React.Component {
       uid: this.state.uid
     });
     this.setState({name: "", address: ""});
+  }
+
+
+  handleUsername() {
+    console.log(this.state.username)
+    this.setState({ 
+          username: this.state.username, 
+          loggedIn: true 
+        })
   }
 
 }

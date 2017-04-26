@@ -3,7 +3,7 @@ import React from 'react';
 import './FormRender.css';
 
 
-  function FormRender(props) {
+  function TodoObject(props) {
       return (
       	
       );
