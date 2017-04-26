@@ -57,7 +57,7 @@ export default class TodoList extends React.Component {
                         <b>{item.name}</b> &nbsp;
                         <span style={{color: 'grey'}} >{item.address}</span> &nbsp;
                         <button onClick={this.handleRemove(index)}>
-                          -
+                          Remove
                         </button>
                       </p> 
                 )}
@@ -73,7 +73,7 @@ export default class TodoList extends React.Component {
                 onChange={this.handleChange('address')} 
                 value={this.state.address}
               />
-              <input type="submit" value="+" onClick={this.handleSubmit} />
+              <input type="submit" value="Add" onClick={this.handleSubmit} />
             </form>
         </div> 
     );
