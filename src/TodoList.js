@@ -1,5 +1,5 @@
 import React from 'react';
-// import TodoObject from './TodoObject.js'
+import TodoObject from './TodoObject.js'
 import firebase from 'firebase';
 
 var config = {
@@ -49,37 +49,32 @@ export default class TodoList extends React.Component {
 
     return (
         <div>
-          <h3>My To Do List Today <span style={{color:"grey"}} >{this.props.username}</span></h3>
+          <h3>{this.props.username}'s To-Do List</h3>
             <br />
+
             <div>
                 {this.state.items.map((item, index) =>
-                      <p key={index}> 
-                        <b>{item.name}</b> &nbsp;
-                        <span style={{color: 'grey'}} >{item.address}</span> &nbsp;
-                        <button onClick={this.handleRemove(index)}>
-                          Remove
-                        </button>
-                      </p> 
+                      <TodoObject index={index} item={item} handleRemove={this.handleRemove} />
                 )}
             </div>
+
             <form>
-              <input 
-                placeholder="Item"
-                onChange={this.handleChange('name')} 
-                value={this.state.name} 
-              />
-              <input 
-                placeholder="Comment"
-                onChange={this.handleChange('address')} 
-                value={this.state.address}
-              />
-              <input type="submit" value="Add" onClick={this.handleSubmit} />
+                <input 
+                  placeholder="Item"
+                  onChange={this.handleChange('name')} 
+                  value={this.state.name} 
+                />
+                <input 
+                  placeholder="Comment"
+                  onChange={this.handleChange('address')} 
+                  value={this.state.address}
+                />
+                <input type="submit" value="Add" onClick={this.handleSubmit} />
             </form>
+            
         </div> 
     );
   }
-  // <p> {this.state.name} - {this.state.address}</p>
-  //<p><b>uid:</b> {this.state.uid}</p>
 
   handleChange (key) {
     return function (e) {
