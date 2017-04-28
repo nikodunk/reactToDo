@@ -92,11 +92,11 @@ export default class TodoList extends React.Component {
             <br />
 
             <div>{this.state.items.map((item, index) =>
-              <TodoListItem 
-                index={index} 
-                item={item} 
-                handleRemove={this.handleRemove} 
-              />)}
+            <TodoListItem 
+              index={index} 
+              item={item} 
+              handleRemove={this.handleRemove} 
+            />)}
             </div>
 
             <TodoListForm
