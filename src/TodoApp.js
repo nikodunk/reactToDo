@@ -1,21 +1,21 @@
 import React from 'react';
 // import LoginPanel from  './LoginPanel.js'
 import TodoList from './TodoList.js'
-
+import './TodoApp.css'
 
 export default class TodoApp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleUsername = this.handleUsername.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleUsernameSubmit = this.handleUsernameSubmit.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.state = {
       loggedIn: false,
       username: ""
     };
   }
 
-  handleUsername(e) {
+  handleUsernameSubmit(e) {
     e.preventDefault();
     console.log(this.state.username)
     this.setState({ 
@@ -24,7 +24,7 @@ export default class TodoApp extends React.Component {
         })
   }
 
-  handleChange () {
+  handleUsernameChange () {
     return function (e) {
       var state = {};
       state.username = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
@@ -42,24 +42,27 @@ export default class TodoApp extends React.Component {
           { this.state.username ? <h1>Hi, {this.state.username}!</ h1> : null}
           <form>
             <input
-              onSubmit={this.handleUsername}
-              onChange={this.handleChange('username')} 
+              className = "addItemInput"
+              onSubmit={this.handleUsernameSubmit}
+              onChange={this.handleUsernameChange('username')} 
               value={this.state.username} 
             />
-            <input type="submit" value="Go!" onClick={this.handleUsername} />
+            <input 
+              className = "submitButton"
+              type="submit" 
+              value="Go!" 
+              onClick={this.handleUsernameSubmit} />
           </form>
-        </div> : null}
+        </div> 
+          : null }
 
-        { this.state.loggedIn ?  <TodoList username={this.state.username} /> : null }
+        { this.state.loggedIn ?  
+          <TodoList username={this.state.username} /> 
+          : null }
       </div>
 
     );
   }
-
-
-
-  
-
 }
 
 

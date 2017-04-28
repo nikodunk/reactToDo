@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoObject from './TodoObject.js'
 import firebase from 'firebase';
+import './TodoList.css';
 
 var config = {
   // apiKey: "some-api-key",
@@ -20,7 +21,6 @@ export default class TodoList extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUsername = this.handleUsername.bind(this);
     this.state = {
       name: '', 
       address: '',
@@ -45,6 +45,42 @@ export default class TodoList extends React.Component {
     this.ref.off();
   };
 
+
+
+  handleChange (key) {
+    return function (e) {
+      var state = {};
+      state[key] = e.target.value;
+      state['uid'] = Date.now()
+      this.setState(state);
+    }.bind(this);
+  }
+
+  handleSubmit(e) {
+      e.preventDefault();
+      this.setState({name: "", address: ""});
+      this.ref.push({
+        name: this.state.name,
+        address: this.state.address,
+        uid: this.state.uid
+      });
+    }  
+
+  handleRemove (key) {
+    return function () {
+      this.items = [{}];
+      this.ref = firebase.database().ref(this.state.username);
+
+      var newData = this.state.items.slice();
+      newData.splice(key, 1);
+
+      this.setState({items: newData})
+      this.ref.set(newData);
+      }.bind(this);
+  }
+
+
+
   render() {
 
     return (
@@ -60,65 +96,26 @@ export default class TodoList extends React.Component {
 
             <form>
                 <input 
+                  className="addItemInput"
                   placeholder="Item"
                   onChange={this.handleChange('name')} 
                   value={this.state.name} 
-                />
+                /> &nbsp;
                 <input 
+                  className="addItemInput"
                   placeholder="Comment"
                   onChange={this.handleChange('address')} 
                   value={this.state.address}
                 />
-                <input type="submit" value="Add" onClick={this.handleSubmit} />
+                <input 
+                  className="addButton"
+                  type="submit" 
+                  value="Add" 
+                  onClick={this.handleSubmit} />
             </form>
             
         </div> 
     );
-  }
-
-  handleChange (key) {
-    return function (e) {
-      var state = {};
-      state[key] = e.target.value;
-      state['uid'] = Date.now()
-      this.setState(state);
-    }.bind(this);
-  }
-
-  
-
-  handleRemove (key) {
-    return function () {
-      this.items = [{}];
-      this.ref = firebase.database().ref(this.state.username);
-
-      var newData = this.state.items.slice();
-      newData.splice(key, 1);
-
-      this.ref.set(newData);
-      this.setState({items: newData})
-      
-      }.bind(this);
-  }
-
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.ref.push({
-      name: this.state.name,
-      address: this.state.address,
-      uid: this.state.uid
-    });
-    this.setState({name: "", address: ""});
-  }
-
-
-  handleUsername() {
-    console.log(this.state.username)
-    this.setState({ 
-          username: this.state.username, 
-          loggedIn: true 
-        })
   }
 
 }

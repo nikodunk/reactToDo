@@ -1,24 +1,13 @@
-.App {
-  text-align: center;
+.addItemInput {
+  border-style: none;
+  border-bottom: solid lightgrey 1px !important;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 2rem;
-}
+.removeButton{
+  border-style: none;
+  background-color: white;
+  color: salmon;
+  cursor: pointer;
+  }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  
