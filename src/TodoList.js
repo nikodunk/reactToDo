@@ -1,5 +1,6 @@
 import React from 'react';
-import TodoObject from './TodoObject.js'
+import TodoListItem from './TodoListItem.js'
+import TodoListForm from './TodoListForm.js'
 import firebase from 'firebase';
 import './TodoList.css';
 
@@ -82,40 +83,28 @@ export default class TodoList extends React.Component {
 
 
   render() {
-
     return (
         <div>
-          <h3>{this.props.username}'s To-Do List</h3>
+            <h3>
+              {this.props.username}'s To-Do List
+            </h3>
+            
             <br />
 
-            <div>
-                {this.state.items.map((item, index) =>
-                      <TodoObject index={index} item={item} handleRemove={this.handleRemove} />
-                )}
+            <div>{this.state.items.map((item, index) =>
+              <TodoListItem 
+                index={index} 
+                item={item} 
+                handleRemove={this.handleRemove} 
+              />)}
             </div>
 
-            <form>
-                <input 
-                  autoFocus
-                  type="text"
-                  className="addItemInput"
-                  placeholder="Item"
-                  onChange={this.handleChange('name')} 
-                  value={this.state.name} 
-                /> &nbsp;
-                <input 
-                  className="addItemInput"
-                  placeholder="Comment"
-                  onChange={this.handleChange('address')} 
-                  value={this.state.address}
-                />
-                <input 
-                  className="addButton"
-                  type="submit" 
-                  value="Add" 
-                  onClick={this.handleSubmit} />
-            </form>
-            
+            <TodoListForm
+              name={this.state.name} 
+              address={this.state.address} 
+              handleSubmit={this.handleSubmit} 
+              handleChange={this.handleChange} 
+            />
         </div> 
     );
   }

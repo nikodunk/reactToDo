@@ -1,9 +1,9 @@
 import React from 'react';
-// import LoginPanel from  './LoginPanel.js'
+import Login from  './Login.js'
 import TodoList from './TodoList.js'
-import './TodoApp.css'
+import './Container.css'
 
-export default class TodoApp extends React.Component {
+export default class Container extends React.Component {
 
   constructor(props) {
     super(props);
@@ -36,32 +36,15 @@ export default class TodoApp extends React.Component {
 
     return (
       <div>
-        { !this.state.loggedIn ?
-        <div>
-          { !this.state.username ? <h1>Hi there! What's your name?</ h1> : null}
-          { this.state.username ? <h1>Hi, {this.state.username}!</ h1> : null}
-          <form>
-            <input
-              autoFocus 
-              type="text"
-              className = "addItemInput"
-              onSubmit={this.handleUsernameSubmit}
-              onChange={this.handleUsernameChange('username')} 
-              value={this.state.username}
-
-            />
-            <input 
-              className = "submitButton"
-              type="submit" 
-              value="Go!" 
-              onClick={this.handleUsernameSubmit} />
-          </form>
-        </div> 
-          : null }
+        { !this.state.loggedIn ? 
+            <Login username={this.state.username} handleUsernameChange={this.handleUsernameChange} handleUsernameSubmit={this.handleUsernameSubmit} />  
+            : null  
+        }
 
         { this.state.loggedIn ?  
           <TodoList username={this.state.username} /> 
-          : null }
+          : null  
+        }
       </div>
 
     );
