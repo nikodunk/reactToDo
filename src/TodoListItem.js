@@ -5,18 +5,26 @@ import './TodoListItem.css';
 
   function TodoListItem(props) {
       return (
-  				<p key={props.index}> 
+  				<div className="todoListItem">
+            <p 
+            style={{display: "inline"}}
+            key={props.index}
+            > 
             {props.item.name} &nbsp;
             <span style={{color: 'grey', fontSize:'0.7rem', fontFamily:"sans-serif", fontWeight:"ultralight"}} >
               {props.item.address}
             </span> &nbsp;
+            </p>
             <button
-              onClick={props.handleRemove(props.index)}
-              className="removeButton">
-              Remove
+                onClick={props.handleRemove(props.index)}
+                className="removeButton"
+                >
+                Remove
             </button>
-            <hr />
-          </p> 
+            <br />
+            <br />
+          </div>
+          
       );
   }
 

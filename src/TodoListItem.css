@@ -8,11 +8,19 @@
   background-color: white;
   color: salmon;
   cursor: pointer;
+  display: none;
   }
 
-  
+.todoListItem:hover  .removeButton{
+  display: inline;
+  float: right;
+}
+
 hr {
     border: none;
     background-color: lightgrey;
     height: 1px;
+    max-width: 200px;
+    margin-left: 0px;
+    
 }

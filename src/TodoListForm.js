@@ -6,7 +6,7 @@ export default class TodoListForm extends React.Component {
   render() {
 
     return (
-            <form>
+            <form style={{marginTop: "30" }}>
                 <input 
                   autoFocus
                   type="text"
