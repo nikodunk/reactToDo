@@ -96,6 +96,8 @@ export default class TodoList extends React.Component {
 
             <form>
                 <input 
+                  autoFocus
+                  type="text"
                   className="addItemInput"
                   placeholder="Item"
                   onChange={this.handleChange('name')} 

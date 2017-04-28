@@ -42,10 +42,13 @@ export default class TodoApp extends React.Component {
           { this.state.username ? <h1>Hi, {this.state.username}!</ h1> : null}
           <form>
             <input
+              autoFocus 
+              type="text"
               className = "addItemInput"
               onSubmit={this.handleUsernameSubmit}
               onChange={this.handleUsernameChange('username')} 
-              value={this.state.username} 
+              value={this.state.username}
+
             />
             <input 
               className = "submitButton"
