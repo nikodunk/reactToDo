@@ -93,9 +93,9 @@ export default class TodoList extends React.Component {
             </div>
 
 
-            <div style={{paddingTop:50}}>{this.state.items.map((item, index) =>
+            <div style={{paddingTop:50}}>{this.state.items.map((item, i) =>
               <TodoListItem 
-                index={index} 
+                key={i} 
                 item={item} 
                 handleRemove={this.handleRemove} 
               />)}
