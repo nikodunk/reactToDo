@@ -2,7 +2,7 @@
   "name": "reactforms",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nikodunk.github.io/reactforms",
+  "homepage": "http://juicealpha.com",
   "dependencies": {
     "firebase": "^3.8.0",
     "react": "^15.5.4",
