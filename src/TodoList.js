@@ -85,18 +85,20 @@ export default class TodoList extends React.Component {
   render() {
     return (
         <div>
-            <h3>
-              {this.props.username}'s To-Do List
-            </h3>
-            
-            <br />
+            <div className="titleBox">
+              <h3 className="title">
+                {this.props.username}'s To-Do List
+              </h3>
+              <button onClick={this.props.handleLogout} className="logoutButton">¡Adios!</button>
+            </div>
 
-            <div>{this.state.items.map((item, index) =>
-            <TodoListItem 
-              index={index} 
-              item={item} 
-              handleRemove={this.handleRemove} 
-            />)}
+
+            <div style={{paddingTop:50}}>{this.state.items.map((item, index) =>
+              <TodoListItem 
+                index={index} 
+                item={item} 
+                handleRemove={this.handleRemove} 
+              />)}
             </div>
 
             <TodoListForm

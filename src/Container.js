@@ -9,6 +9,7 @@ export default class Container extends React.Component {
     super(props);
     this.handleUsernameSubmit = this.handleUsernameSubmit.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.state = {
       loggedIn: false,
       username: ""
@@ -17,7 +18,7 @@ export default class Container extends React.Component {
 
   handleUsernameSubmit(e) {
     e.preventDefault();
-    console.log(this.state.username)
+    // console.log(this.state.username)
     this.setState({ 
           username: this.state.username, 
           loggedIn: true 
@@ -31,6 +32,13 @@ export default class Container extends React.Component {
       this.setState(state);
     }.bind(this);
   }
+
+  handleLogout(){
+      this.setState({ 
+          username: "", 
+          loggedIn: false 
+        })
+  }
   
   render() {
 
@@ -42,7 +50,7 @@ export default class Container extends React.Component {
         }
 
         { this.state.loggedIn ?  
-          <TodoList username={this.state.username} /> 
+          <TodoList username={this.state.username} handleLogout={this.handleLogout}/> 
           : null  
         }
       </div>

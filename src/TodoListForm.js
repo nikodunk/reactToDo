@@ -6,7 +6,7 @@ export default class TodoListForm extends React.Component {
   render() {
 
     return (
-            <form style={{marginTop: "50" }} className="divHover">
+            <form style={{marginTop: "50px" }} className="divHover">
                 <input 
                   autoFocus
                   type="text"
@@ -23,7 +23,7 @@ export default class TodoListForm extends React.Component {
                 />
                 <button 
                   style={{color: "skyblue"}}
-                  className = "addItemButton"
+                  className="addItemButton"
                   type="submit" 
                   onClick={this.props.handleSubmit}>
                   Add

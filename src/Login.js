@@ -12,7 +12,7 @@ export default class Login extends React.Component {
                 <input
                   autoFocus 
                   type="text"
-                  className = "addItemInput"
+                  className="addItemInput"
                   onSubmit={this.props.handleUsernameSubmit}
                   onChange={this.props.handleUsernameChange('username')} 
                   value={this.props.username}
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
                 />
                 <input 
                   style={{color:"lightgreen"}}
-                  className = "submitButton"
+                  className="submitButton"
                   type="submit" 
                   value="Let's Go!" 
                   onClick={this.props.handleUsernameSubmit} />
