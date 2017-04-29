@@ -1,5 +1,5 @@
-h3{
-	font-style: bold;
+h2{
+	font-weight: 300;
 }
 
 
@@ -44,9 +44,17 @@ button{
 }
 
 
-div.placeholder {border-style: solid; border-width: 1px; border-color: lightgrey;}
+div.placeholder {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  border-top: none;
+  border-bottom: none;}
 
 div.placeholder:before {
   content: "Drop here";
-  color: rgb(225,210,90);
+  color: grey;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  padding-left: 5px;
 }
