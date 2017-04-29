@@ -113,9 +113,6 @@ export default class TodoList extends React.Component {
 
     this.ref = firebase.database().ref(this.state.username);
     this.ref.set(this.state.items);
-    this.setState({ 
-          items: this.items.slice(1,100)
-      })
 
   }
   
@@ -167,15 +164,14 @@ export default class TodoList extends React.Component {
                     draggable="true"
                     onDragEnd={this.dragEnd}
                     onDragStart={this.dragStart}
-                  >
-                    <b>{item.name}</b> &nbsp; {item.address}
-                    <button
+                  > <b>{item.name}</b> &nbsp; {item.address}
+                  <button
                         className="removeButton"
                         style={{color:"salmon"}}
                         onClick={this.handleRemove(i)}
                         >
                         Remove
-                    </button>                   
+                    </button>  
                   </div>
               )}
             </div>
