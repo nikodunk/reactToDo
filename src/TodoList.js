@@ -51,7 +51,7 @@ export default class TodoList extends React.Component {
   handleChange (key) {
     return function (e) {
       var state = {};
-      state[key] = e.target.value;
+      state[key] = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
       state['uid'] = Date.now()
       this.setState(state);
     }.bind(this);

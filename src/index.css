@@ -4,7 +4,7 @@ body {
   margin-top: 50px;
   max-width: 500px;
   padding: 0;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Playfair Display', serif;
 }
 
 
@@ -16,3 +16,13 @@ button:focus {
 }
 
 
+
+
+hr {
+    border: none;
+    background-color: lightgrey;
+    height: 1px;
+    max-width: 200px;
+    margin-left: 0px;
+    
+}

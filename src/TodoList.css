@@ -1,15 +1,35 @@
-.addButton{
-	border-style: none;
-  	background-color: white;
-  	color: skyblue;
-  	cursor: pointer;
-}
-
-
 h3{
 	font-style: bold;
 }
 
-{
-	font-weight: 300;
+
+button{
+  border-style: none;
+  background-color: white;
+  cursor: pointer;
+  float: right;
+  display: none;
 }
+
+@media (pointer:coarse) {
+    button {
+      display: inline;
+    }
+}
+
+.todoListItem:hover  .removeButton{
+  display: inline;
+}
+
+.divHover:hover .addItemButton{
+	display:inline;
+}
+
+
+
+.todoListItem{
+  margin-bottom: 30px;
+}
+
+
+

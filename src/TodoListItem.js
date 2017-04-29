@@ -1,28 +1,26 @@
 import React from 'react';
 // import logo from './logo.svg';
-import './TodoListItem.css';
 
 
   function TodoListItem(props) {
       return (
   				<div className="todoListItem">
             <p 
-            style={{display: "inline"}}
+            style={{display: "inline", fontWeight:"400"}}
             key={props.index}
             > 
             {props.item.name} &nbsp;
-            <span style={{color: 'grey', fontSize:'0.7rem', fontFamily:"sans-serif", fontWeight:"ultralight"}} >
+            <span style={{color: 'grey', fontWeight:"100"}} >
               {props.item.address}
             </span> &nbsp;
             </p>
             <button
+                style={{color:"salmon"}}
                 onClick={props.handleRemove(props.index)}
                 className="removeButton"
                 >
                 Remove
             </button>
-            <br />
-            <br />
           </div>
           
       );

@@ -6,7 +6,7 @@ export default class Login extends React.Component {
 
     return (
             <div>
-              { !this.props.username ? <h1>Hi there! What's your name?</ h1> : null}
+              { !this.props.username ? <h1>Hi! What's your name?</ h1> : null}
               { this.props.username ? <h1>Hi, {this.props.username}!</ h1> : null}
               <form>
                 <input
@@ -19,9 +19,10 @@ export default class Login extends React.Component {
 
                 />
                 <input 
+                  style={{color:"lightgreen"}}
                   className = "submitButton"
                   type="submit" 
-                  value="Go!" 
+                  value="Let's Go!" 
                   onClick={this.props.handleUsernameSubmit} />
               </form>
             </div> 
