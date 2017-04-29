@@ -3,11 +3,12 @@ h3{
 }
 
 
+
 button{
   border-style: none;
   background-color: white;
   cursor: pointer;
-  float: right;
+  float:right;
   display: none;
 }
 
@@ -17,8 +18,9 @@ button{
     }
 }
 
-.todoListItem:hover  .removeButton{
-  display: inline;
+.todoListItem:hover .removeButton{
+  display:inline;
+
 }
 
 .divHover:hover .addItemButton{
@@ -28,7 +30,8 @@ button{
 
 
 .todoListItem{
-  margin-bottom: 30px;
+  /*padding-bottom: 30px;*/
+  cursor: pointer;
 }
 
 .title{
@@ -40,3 +43,10 @@ button{
   color:lightgrey;
 }
 
+
+div.placeholder {border-style: solid; border-width: 1px; border-color: lightgrey;}
+
+div.placeholder:before {
+  content: "Drop here";
+  color: rgb(225,210,90);
+}

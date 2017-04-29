@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoListItem from './TodoListItem.js'
+// import TodoListItem from './TodoListItem.js'
 import TodoListForm from './TodoListForm.js'
 import firebase from 'firebase';
 import './TodoList.css';
@@ -13,15 +13,21 @@ var config = {
 
 firebase.initializeApp(config);
 
+var placeholder = document.createElement("div");
+placeholder.className = "placeholder";
 
 
 export default class TodoList extends React.Component {
 
   constructor(props) {
+
     super(props);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dragOver = this.dragOver.bind(this);
+    this.dragStart = this.dragStart.bind(this);
+    this.dragEnd = this.dragEnd.bind(this);
     this.state = {
       name: '', 
       address: '',
@@ -29,6 +35,7 @@ export default class TodoList extends React.Component {
       items: [],
       username: this.props.username,
     };
+
   }
 
   componentWillMount() {
@@ -76,10 +83,67 @@ export default class TodoList extends React.Component {
       newData.splice(key, 1);
 
       this.setState({items: newData})
-      this.ref.set(newData);
+      this.ref.set(this.state.items);
       }.bind(this);
   }
 
+  dragStart(e) {
+    this.dragged = e.currentTarget;
+    e.dataTransfer.effectAllowed = 'move';
+    console.log('za')
+    // Firefox requires calling dataTransfer.setData
+    // for the drag to properly work
+    e.dataTransfer.setData("text/html", e.currentTarget);
+  }
+
+  dragEnd(e) {
+    this.dragged.style.display = "block";
+    this.dragged.parentNode.removeChild(placeholder);
+
+    // Update state
+    var newData = this.state.items;
+    var from = Number(this.dragged.dataset.id);
+    var to = Number(this.over.dataset.id);
+    
+    if(from < to) to--;
+    if(this.nodePlacement == "after") to++;
+
+    newData.splice(to, 0, newData.splice(from, 1)[0]);
+    this.setState({items: newData});
+
+    this.ref = firebase.database().ref(this.state.username);
+    this.ref.set(this.state.items);
+
+
+  }
+  
+  dragOver(e) {
+    e.preventDefault();
+
+
+    this.dragged.style.display = "none";
+    if(e.target.className == "placeholder") return;
+    this.over = e.target;
+
+
+
+    // Inside the dragOver method
+    var relY = e.clientY - this.over.offsetTop;
+    var height = this.over.offsetHeight / 2;
+    var parent = e.target.parentNode;
+
+    if(relY > height) {
+      this.nodePlacement = "after";
+      parent.insertBefore(placeholder, e.target.nextElementSibling);
+    }
+    else if(relY < height) {
+      this.nodePlacement = "before"
+      parent.insertBefore(placeholder, e.target);
+    }
+
+
+    
+  }
 
 
   render() {
@@ -92,13 +156,27 @@ export default class TodoList extends React.Component {
               <button onClick={this.props.handleLogout} className="logoutButton">¡Adios!</button>
             </div>
 
-
-            <div style={{paddingTop:50}}>{this.state.items.map((item, i) =>
-              <TodoListItem 
-                key={i} 
-                item={item} 
-                handleRemove={this.handleRemove} 
-              />)}
+            <div onDragOver={this.dragOver} style={{marginTop:50}}>
+              {this.state.items.map((item, i) =>
+                  <div
+                    className="todoListItem"
+                    data-id={i}
+                    key={i}
+                    draggable="true"
+                    onDragEnd={this.dragEnd}
+                    onDragStart={this.dragStart}
+                  >
+                    {item.name} &nbsp; <span style={{color:"grey"}}>{item.address}
+                    <button
+                        className="removeButton"
+                        style={{color:"salmon"}}
+                        onClick={this.handleRemove(i)}
+                        >
+                        Remove
+                    </button>    
+                    </span>                
+                  </div>
+              )}
             </div>
 
             <TodoListForm

@@ -4,7 +4,7 @@ import React from 'react';
 
   function TodoListItem(props) {
       return (
-  				<div className="todoListItem">
+          <div className="todoListItem">
             <p style={{display: "inline", fontWeight:"400"}}> 
               {props.item.name} &nbsp;
               <span style={{color: 'grey', fontWeight:"100"}} >
