@@ -3,6 +3,7 @@ import Login from  './Login.js'
 import TodoList from './TodoList.js'
 import './Container.css'
 
+
 export default class Container extends React.Component {
 
   constructor(props) {
@@ -19,9 +20,9 @@ export default class Container extends React.Component {
   handleUsernameSubmit(e) {
     e.preventDefault();
     // console.log(this.state.username)
-    this.setState({ 
-          username: this.state.username, 
-          loggedIn: true 
+    this.setState({
+          username: this.state.username,
+          loggedIn: true
         })
   }
 
@@ -34,30 +35,27 @@ export default class Container extends React.Component {
   }
 
   handleLogout(){
-      this.setState({ 
-          username: "", 
-          loggedIn: false 
+      this.setState({
+          username: "",
+          loggedIn: false
         })
   }
-  
+
   render() {
 
     return (
       <div>
-        { !this.state.loggedIn ? 
-            <Login username={this.state.username} handleUsernameChange={this.handleUsernameChange} handleUsernameSubmit={this.handleUsernameSubmit} />  
-            : null  
+        { !this.state.loggedIn ?
+            <Login username={this.state.username} handleUsernameChange={this.handleUsernameChange} handleUsernameSubmit={this.handleUsernameSubmit} />
+            : null
         }
 
-        { this.state.loggedIn ?  
-          <TodoList username={this.state.username} handleLogout={this.handleLogout}/> 
-          : null  
+        { this.state.loggedIn ?
+          <TodoList username={this.state.username} handleLogout={this.handleLogout}/>
+          : null
         }
       </div>
 
     );
   }
 }
-
-
-

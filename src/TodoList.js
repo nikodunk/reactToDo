@@ -1,8 +1,13 @@
 import React from 'react';
-// import TodoListItem from './TodoListItem.js'
+
+import TodoListItem from './TodoListItem.js'
 import TodoListForm from './TodoListForm.js'
-import firebase from 'firebase';
 import './TodoList.css';
+
+import firebase from 'firebase';
+import Dragula from 'react-dragula';
+
+
 
 var config = {
   // apiKey: "some-api-key",
@@ -12,7 +17,6 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
 
 export default class TodoList extends React.Component {
 
@@ -82,8 +86,13 @@ export default class TodoList extends React.Component {
   }
 
 
+  dropHandler(el){
+    console.log()
+  }
+
   render() {
     return (
+
         <div>
             <div className="titleBox">
               <h2 className="title">
@@ -92,22 +101,9 @@ export default class TodoList extends React.Component {
               <button onClick={this.props.handleLogout} className="logoutButton">¡Adios!</button>
             </div>
 
-            <div style={{marginTop:50}}>
+            <div className="container" ref={this.dragulaDecorator}>
               {this.state.items.map((item, i) =>
-                  <div
-                    className="todoListItem"
-                    data-id={i}
-                    key={i}
-                  > <b>{item.name}</b> &nbsp; {item.address}
-                  <button
-                        className="removeButton"
-                        style={{color:"salmon"}}
-                        onClick={this.handleRemove(i)}
-                        >
-                        Remove
-                    </button>
-                    <hr />
-                  </div>
+                  <TodoListItem key={i} handleRemove={this.handleRemove} item={item} />
               )}
             </div>
 
@@ -120,5 +116,14 @@ export default class TodoList extends React.Component {
         </div>
     );
   }
+
+  dragulaDecorator = (componentBackingInstance) => {
+      if (componentBackingInstance) {
+        let options = { };
+        Dragula([componentBackingInstance], options)
+        .on('drop', this.dropHandler)
+      }
+
+    };
 
 }

@@ -5,7 +5,7 @@ import React from 'react';
   function TodoListItem(props) {
       return (
           <div className="todoListItem">
-            <p style={{display: "inline", fontWeight:"400"}}> 
+            <p style={{display: "inline", fontWeight:"400"}}>
               {props.item.name} &nbsp;
               <span style={{color: 'grey', fontWeight:"100"}} >
                 {props.item.address}
@@ -18,8 +18,9 @@ import React from 'react';
                 >
                 Remove
             </button>
+            <hr />
           </div>
-          
+
       );
   }
 
