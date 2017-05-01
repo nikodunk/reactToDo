@@ -13,7 +13,7 @@ import React from 'react';
             </p>
             <button
                 style={{color:"salmon"}}
-                onClick={props.handleRemove(props.index)}
+                onClick={props.handleRemove(props.id)}
                 className="removeButton"
                 >
                 Remove

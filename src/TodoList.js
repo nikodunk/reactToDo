@@ -21,11 +21,12 @@ firebase.initializeApp(config);
 export default class TodoList extends React.Component {
 
   constructor(props) {
-
     super(props);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dropHandler = this.dropHandler.bind(this);
+
     this.state = {
       name: '',
       address: '',
@@ -33,19 +34,21 @@ export default class TodoList extends React.Component {
       items: [],
       username: this.props.username,
     };
+    this.ref = firebase.database().ref(this.state.username);
 
   }
 
   componentWillMount() {
     this.items = [{}];
-    this.ref = firebase.database().ref(this.state.username);
     this.ref.on("child_added", function(dataSnapshot) {
       this.items.push( dataSnapshot.val());
+      var newStuff = this.items.slice(1,50)
       this.setState({
-          items: this.items.slice(1,100)
+          items: newStuff
       })
     }.bind(this));
   }
+
 
   componentWillUnmount() {
     this.ref.off();
@@ -72,13 +75,12 @@ export default class TodoList extends React.Component {
       });
     }
 
-  handleRemove (key) {
+  handleRemove (id) {
     return function () {
       this.items = [{}];
-      this.ref = firebase.database().ref(this.state.username);
 
       var newData = this.state.items.slice();
-      newData.splice(key, 1);
+      newData.splice(id, 1);
 
       this.setState({items: newData})
       this.ref.set(this.state.items);
@@ -86,9 +88,23 @@ export default class TodoList extends React.Component {
   }
 
 
-  dropHandler(el){
-    console.log()
+  dropHandler(a, b, c, d){
+      console.log("dropHandler:");
+      console.log('item ' + a.id +' dropped before before '+ d.id)
+      var newData = this.state.items.slice()
+      var originalData = this.state.items.slice()
+      newData.splice(a.id, 1);
+      newData.splice(d.id-1, 0, originalData[a.id]);
+      console.log(this.state, newData)
+      this.setState({items: newData}, this.updateFB())
+
   }
+
+  updateFB(){
+    console.log('updating FB...')
+    this.ref.set(this.state.items)
+  }
+
 
   render() {
     return (
@@ -103,7 +119,9 @@ export default class TodoList extends React.Component {
 
             <div className="container" ref={this.dragulaDecorator}>
               {this.state.items.map((item, i) =>
-                  <TodoListItem key={i} handleRemove={this.handleRemove} item={item} />
+                <div id={i} key={i}>
+                  <TodoListItem handleRemove={this.handleRemove} id={i} item={item} />
+                </div>
               )}
             </div>
 
