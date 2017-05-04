@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from  './Login.js'
-import TodoList from './TodoList.js'
+import TodoListMain from './TodoListMain.js'
 import './Container.css'
 
 
@@ -44,14 +44,14 @@ export default class Container extends React.Component {
   render() {
 
     return (
-      <div>
+      <div> 
         { !this.state.loggedIn ?
             <Login username={this.state.username} handleUsernameChange={this.handleUsernameChange} handleUsernameSubmit={this.handleUsernameSubmit} />
             : null
         }
 
         { this.state.loggedIn ?
-          <TodoList username={this.state.username} handleLogout={this.handleLogout}/>
+          <TodoListMain username={this.state.username} handleLogout={this.handleLogout}/>
           : null
         }
       </div>
