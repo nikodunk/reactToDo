@@ -35,7 +35,7 @@ button{
   width: 30px;
   border-radius: 50%;
 	text-align: center;
-	font-size: 1rem;
+	background: greenyellow;
 }
 
 .addItemButton:hover{

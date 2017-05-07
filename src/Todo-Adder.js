@@ -15,7 +15,6 @@ class TodoListForm extends React.Component {
                   value={this.props.name}
                 /> &nbsp;
                 <button
-                  style={{background: "skyblue"}}
                   className="addItemButton"
                   type="submit"
                   onClick={this.props.handleSubmit}>
