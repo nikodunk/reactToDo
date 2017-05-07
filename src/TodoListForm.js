@@ -10,22 +10,16 @@ class TodoListForm extends React.Component {
                   autoFocus
                   type="text"
                   className="addItemInput"
-                  placeholder="Item"
+                  placeholder="Add an item here..."
                   onChange={this.props.handleChange('name')}
                   value={this.props.name}
                 /> &nbsp;
-                <input
-                  className="addItemInput"
-                  placeholder="Comment"
-                  onChange={this.props.handleChange('address')}
-                  value={this.props.address}
-                />
                 <button
                   style={{background: "skyblue"}}
                   className="addItemButton"
                   type="submit"
                   onClick={this.props.handleSubmit}>
-                  Add
+                  <b>+</b>
                 </button>
             </form>
     );

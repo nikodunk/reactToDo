@@ -29,7 +29,6 @@ export default class TodoListContainer extends React.Component {
 
     this.state = {
       name: '',
-      address: '',
       uid: '',
       items: [],
       username: this.props.username,
@@ -38,19 +37,14 @@ export default class TodoListContainer extends React.Component {
   }
 
   componentWillMount() {
-
     this.items = [{}];
     this.ref.on("value", (dataSnapshot) => {
       this.items = dataSnapshot.val()
-      console.log(this.items)
-      // this.items = this.items.slice(1, 50)
-      // this.items = this.items[0]
       this.items = Object.keys(this.items).map(key => this.items[key])
-      // console.log(this.items)
       this.setState({
           items: this.items
       })
-      console.log(this.state.items)
+      // console.log(this.state.items)
     })
 
 
@@ -70,12 +64,14 @@ export default class TodoListContainer extends React.Component {
 
   handleSubmit(e) {
       e.preventDefault();
+      if(this.state.name === "") {
+        this.setState({name: "Double click me to edit, drag me to reorder!"}).bind(this)
+      }
       this.ref.push({
         name: this.state.name,
-        address: this.state.address,
         uid: this.getRandomColor()
       });
-      this.setState({name: "", address: ""});
+      this.setState({name: ""});
       console.log(this.state.items)
     }
 
@@ -88,16 +84,7 @@ export default class TodoListContainer extends React.Component {
       if(this.state.items.length !== 1){
         var _newData = this.state.items;
         _newData.splice(id, 1);
-        // this.setState({
-        //   items: _newData
-        // })
         this.fbUpdate(_newData)
-        // console.log('updating server...')
-        // this.ref.set(_newData)
-        // ref.on("child_removed", function(snapshot) {
-        //   var deletedPost = snapshot.val();
-        //   console.log("Item number '" + id + "' has been deleted");
-        // });
       }
       else{
         console.log('branch running')
@@ -139,7 +126,6 @@ export default class TodoListContainer extends React.Component {
 
             <TodoListForm
               name={this.state.name}
-              address={this.state.address}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
             />

@@ -1,10 +1,20 @@
 .submitButton{
-	border-style: none;
-  	background-color: white;
+		border-style: none;
+  	background-color: lightgreen;
   	cursor: pointer;
+		height: 30px;
+		border-radius: 2px;
+		margin-left: 5px;
+
 }
 
 .addItemInput {
   border-style: none;
   border-bottom: solid lightgrey 1px;
+}
+
+
+.submitButton:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transition: box-shadow 0.2s ease-in-out;
 }

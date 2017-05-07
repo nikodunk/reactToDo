@@ -42,9 +42,8 @@ export default class Container extends React.Component {
   }
 
   render() {
-
     return (
-      <div> 
+      <div>
         { !this.state.loggedIn ?
             <Login username={this.state.username} handleUsernameChange={this.handleUsernameChange} handleUsernameSubmit={this.handleUsernameSubmit} />
             : null

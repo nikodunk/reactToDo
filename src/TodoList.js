@@ -12,7 +12,12 @@ const TodoList = SortableContainer(({items, handleRemove}) => {
     <div>
         <ul className="container">
           {items.map((value, index) => (
-            <TodoListItem key={`item-${index}`} index={index} value={value} handleRemove={handleRemove} itemIndex={index} />
+            <TodoListItem
+              key={`item-${index}`}
+              index={index}
+              value={value}
+              handleRemove={handleRemove}
+              itemIndex={index} />
           ))}
         </ul>
     </div>

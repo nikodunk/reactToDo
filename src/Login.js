@@ -19,7 +19,6 @@ export default class Login extends React.Component {
 
                 />
                 <input
-                  style={{color:"lightgreen"}}
                   className="submitButton"
                   type="submit"
                   value="Let's Go!"
