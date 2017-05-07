@@ -6,7 +6,7 @@ export default class Login extends React.Component {
 
     return (
             <div>
-              <p style={{color: "lightgrey", fontSize: "small"}}>Get a good good to-do list in the cloud</p>
+              <p style={{color: "lightgrey", fontSize: "small"}}>GoodGood: A simple cloud to-do list</p>
               { !this.props.username ? <h1>Hi! What's your name?</h1> : null}
               { this.props.username ? <h1>Hi, {this.props.username}!</h1> : null}
               <form>

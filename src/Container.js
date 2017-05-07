@@ -18,7 +18,6 @@ var config = {
 firebase.initializeApp(config);
 
 
-
 export default class TodoListContainer extends React.Component {
   constructor(props) {
     super(props);
