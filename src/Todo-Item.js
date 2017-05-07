@@ -4,7 +4,7 @@ import {ItemEditor} from './Todo-Editor.js'
 
 
 
-const TodoListItem = SortableElement( function({value, handleRemove, handleUpdate, itemIndex, key}){
+const TodoItem = SortableElement( function({value, handleRemove, handleUpdate, itemIndex, key}){
 
             return(
               <div
@@ -24,7 +24,7 @@ const TodoListItem = SortableElement( function({value, handleRemove, handleUpdat
           }
 );
 
-export default TodoListItem;
+export default TodoItem;
 
 
 

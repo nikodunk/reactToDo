@@ -2,7 +2,7 @@ import React from 'react';
 
 import {SortableContainer} from 'react-sortable-hoc';
 
-import TodoListItem from './Todo-Item.js'
+import TodoItem from './Todo-Item.js'
 
 
 
@@ -12,7 +12,7 @@ const TodoList = SortableContainer(({items, handleRemove, handleUpdate}) => {
     <div>
         <ul className="container">
           {items.map((value, index) => (
-            <TodoListItem
+            <TodoItem
               key={`item-${index}`}
               index={index}
               value={value}

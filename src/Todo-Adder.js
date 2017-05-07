@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TodoListForm extends React.Component {
+class TodoListAdder extends React.Component {
 
   render() {
 
@@ -27,4 +27,4 @@ class TodoListForm extends React.Component {
 }
 
 
-export default TodoListForm
+export default TodoListAdder
