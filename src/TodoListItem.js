@@ -11,7 +11,8 @@ const TodoListItem = SortableElement( function({value, handleRemove, itemIndex, 
                 className="todoListItem noselect"
                 style={{background: value.uid}}
                 >
-                  <ItemEditor className="item" text={value.name}/>
+                  <p style={{display: "inline"}}>{value.name}</p>
+
                   <button
                       onClick={handleRemove.bind(this, itemIndex)}
                       className="removeButton"
@@ -29,5 +30,4 @@ export default TodoListItem;
 
 
 
-//onDoubleClick={editToggle}
-//onKeyDown={this._keyAction}
+//<ItemEditor className="item" text={value.name}/>

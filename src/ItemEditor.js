@@ -36,6 +36,7 @@ export class ItemEditor extends React.Component {
     if(this.state.editing) {
       return(
           <input
+            className="ItemEditorInput"
             type="text"
             onKeyDown={this._keyAction}
             defaultValue={this.state.text}

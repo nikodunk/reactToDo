@@ -5,7 +5,7 @@
 }
 
 
-input{
+.ItemEditorInput {
   background: transparent;
   width: 300px;
   border:none;
