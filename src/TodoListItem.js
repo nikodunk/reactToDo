@@ -1,31 +1,33 @@
 import React from 'react';
-
-// import logo from './logo.svg';
 import {SortableElement} from 'react-sortable-hoc';
+import {ItemEditor} from './ItemEditor.js'
 
 
 
+const TodoListItem = SortableElement( function({value, handleRemove, itemIndex, key}){
 
-const TodoListItem = SortableElement(
-
-        function({value, handleRemove, itemIndex, key}){
-          
-          return(
-            <div className="todoListItem noselect" style={{background: value.uid}}>
-              <p onDoubleClick={null}>
-                {value.name}
-              </p>
-              <button
-                  onClick={handleRemove.bind(this, itemIndex)}
-                  className="removeButton"
-                  >
-                  Remove
-              </button>
-            </div>
-          )
-
-
-      }
+            return(
+              <div
+                className="todoListItem noselect"
+                style={{background: value.uid}}
+                >
+                  <ItemEditor className="item" text={value.name}/>
+                  <button
+                      onClick={handleRemove.bind(this, itemIndex)}
+                      className="removeButton"
+                      >
+                      Remove
+                  </button>
+              </div>
+            )
+          }
 );
 
 export default TodoListItem;
+
+
+
+
+
+//onDoubleClick={editToggle}
+//onKeyDown={this._keyAction}

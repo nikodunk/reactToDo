@@ -1,0 +1,13 @@
+
+.item {
+	padding-right: 30px;
+	display: inline;
+}
+
+
+input{
+  background: transparent;
+  width: 300px;
+  border:none;
+  border-bottom: solid 1px grey;
+}

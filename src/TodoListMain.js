@@ -122,7 +122,7 @@ export default class TodoListContainer extends React.Component {
             <button onClick={this.props.handleLogout} className="logoutButton">¡Adios!</button>
           </div>
 
-            <TodoList items={this.state.items} onSortEnd={this.onSortEnd} handleRemove={this.handleRemove} />
+            <TodoList items={this.state.items} distance={5} onSortEnd={this.onSortEnd} handleRemove={this.handleRemove} />
 
             <TodoListForm
               name={this.state.name}
