@@ -1,8 +1,8 @@
 import React from 'react';
 
-import TodoList from './TodoList.js'
-import TodoListForm from './TodoListForm.js'
-import './TodoListMain.css';
+import TodoList from './Todo-List.js'
+import TodoListForm from './Todo-Adder.js'
+import './Todo-Container.css';
 
 import firebase from 'firebase';
 import {arrayMove} from 'react-sortable-hoc';
@@ -103,6 +103,19 @@ export default class TodoListContainer extends React.Component {
     this.fbUpdate(this.state.items)
   };
 
+  handleUpdate = (e, key) => {
+    //  console.log(key, e)
+     var _newData = this.state.items
+     var _updated = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
+     _newData[key].name = _updated
+    //  console.log(_newData)
+     this.setState({
+       items: _newData
+     })
+     console.log(this.state)
+     this.fbUpdate(this.state.items)
+  };
+
   fbUpdate(_newData){
     console.log('updating server...')
     this.ref.set(_newData)
@@ -122,7 +135,12 @@ export default class TodoListContainer extends React.Component {
             <button onClick={this.props.handleLogout} className="logoutButton">¡Adios!</button>
           </div>
 
-            <TodoList items={this.state.items} distance={5} onSortEnd={this.onSortEnd} handleRemove={this.handleRemove} />
+            <TodoList
+              items={this.state.items}
+              distance={5}
+              onSortEnd={this.onSortEnd}
+              handleRemove={this.handleRemove}
+              handleUpdate={this.handleUpdate} />
 
             <TodoListForm
               name={this.state.name}
@@ -133,10 +151,3 @@ export default class TodoListContainer extends React.Component {
     )
   }
 }
-
-
-// <ul className="container">
-//   {this.state.items.map((value, index) => (
-//     <li key={`item-${index}`} index={index} > {value.name}</li>
-//   ))}
-// </ul>

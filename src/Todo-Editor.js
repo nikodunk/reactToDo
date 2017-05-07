@@ -1,31 +1,30 @@
 import React from 'react';
-import './ItemEditor.css'
+import './Todo-Editor.css'
 
 
 export class ItemEditor extends React.Component {
   constructor(props){
     super(props);
-
     this.state = {
-      editing: props.editing,
-      text: props.text
+      editing: false
     }
   }
 
-  static propTypes = {
-    text: React.PropTypes.string,
-    editing: React.PropTypes.bool
-  };
+  // static propTypes = {
+  //   name: React.PropTypes.string,
+  //   editing: React.PropTypes.bool
+  // };
 
 
   _editElement = () => {
     this.setState({editing: true}, () => {});
   }
 
-  _keyAction = (e) => {
+  _updateElement = (e) => {
      if(e.keyCode === 13) {
        // Enter to save
-       this.setState({text: e.target.value, editing: false});
+       this.props.handleUpdate(e, this.props.itemIndex)
+       this.setState({editing: false});
      } else if(e.keyCode === 27) {
        // ESC to cancel
        this.setState({editing: false});
@@ -35,16 +34,20 @@ export class ItemEditor extends React.Component {
   _renderElement = () => {
     if(this.state.editing) {
       return(
+          <p className="item">
           <input
             className="ItemEditorInput"
             type="text"
-            onKeyDown={this._keyAction}
-            defaultValue={this.state.text}
-            ref="textField" />
+            onKeyDown={this._updateElement}
+            defaultValue={this.props.name}
+            ref="textField"
+
+             /> &nbsp; <span style={{fontSize:"0.8rem"}}>Press enter</span>
+             </p>
       );
     } else {
       return(
-        <p className="item" onDoubleClick={this._editElement}> {this.state.text} </p>
+        <p className="item" onDoubleClick={this._editElement}> {this.props.name} </p>
       );
     }
   }
