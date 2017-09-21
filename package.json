@@ -2,7 +2,7 @@
   "name": "reactforms",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/nikodunk/simple-to-do-react/",
+  "homepage": "https://nikodunk.github.io/simple-to-do-react/",
   "dependencies": {
     "firebase": "^3.8.0",
     "react": "^15.5.4",
